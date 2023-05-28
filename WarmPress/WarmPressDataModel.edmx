@@ -1,0 +1,132 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="warmPressModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="WarmPressTests">
+          <Key>
+            <PropertyRef Name="BandSerial" />
+            <PropertyRef Name="Test" />
+          </Key>
+          <Property Name="BandSerial" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Test" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="Result" Type="nchar" MaxLength="10" />
+          <Property Name="Units" Type="nchar" MaxLength="10" />
+          <Property Name="Value" Type="nchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="WarmReshapeParams">
+          <Key>
+            <PropertyRef Name="BandSerial" />
+          </Key>
+          <Property Name="BandSerial" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ProcessedOn" Type="datetime" Nullable="false" />
+          <Property Name="LoadStartTime" Type="datetime" />
+          <Property Name="PressStartTime" Type="datetime" />
+          <Property Name="UnLoadStopTime" Type="datetime" />
+          <Property Name="PressStopTime" Type="datetime" />
+          <Property Name="TopFixtureTemp" Type="int" />
+          <Property Name="BottomFixtureTemp" Type="int" />
+          <Property Name="TossingItem" Type="nvarchar" MaxLength="50" />
+          <Property Name="ZHeightCheck" Type="bit" />
+          <Property Name="WarmPressCheck" Type="bit" />
+        </EntityType>
+        <EntityContainer Name="warmPressModelStoreContainer">
+          <EntitySet Name="WarmPressTests" EntityType="Self.WarmPressTests" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="WarmReshapeParams" EntityType="Self.WarmReshapeParams" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="warmPressModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="WarmPressTest">
+          <Key>
+            <PropertyRef Name="BandSerial" />
+            <PropertyRef Name="Test" />
+          </Key>
+          <Property Name="BandSerial" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Test" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="Result" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="Units" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="Value" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+        </EntityType>
+        <EntityType Name="WarmReshapeParam">
+          <Key>
+            <PropertyRef Name="BandSerial" />
+          </Key>
+          <Property Name="BandSerial" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ProcessedOn" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="LoadStartTime" Type="DateTime" Precision="3" />
+          <Property Name="PressStartTime" Type="DateTime" Precision="3" />
+          <Property Name="UnLoadStopTime" Type="DateTime" Precision="3" />
+          <Property Name="PressStopTime" Type="DateTime" Precision="3" />
+          <Property Name="TopFixtureTemp" Type="Int32" />
+          <Property Name="BottomFixtureTemp" Type="Int32" />
+          <Property Name="TossingItem" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ZHeightCheck" Type="Boolean" />
+          <Property Name="WarmPressCheck" Type="Boolean" />
+        </EntityType>
+        <EntityContainer Name="warmPressEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="WarmPressTests" EntityType="Self.WarmPressTest" />
+          <EntitySet Name="WarmReshapeParams" EntityType="Self.WarmReshapeParam" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="warmPressModelStoreContainer" CdmEntityContainer="warmPressEntities">
+          <EntitySetMapping Name="WarmPressTests">
+            <EntityTypeMapping TypeName="warmPressModel.WarmPressTest">
+              <MappingFragment StoreEntitySet="WarmPressTests">
+                <ScalarProperty Name="BandSerial" ColumnName="BandSerial" />
+                <ScalarProperty Name="Test" ColumnName="Test" />
+                <ScalarProperty Name="Result" ColumnName="Result" />
+                <ScalarProperty Name="Units" ColumnName="Units" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="WarmReshapeParams">
+            <EntityTypeMapping TypeName="warmPressModel.WarmReshapeParam">
+              <MappingFragment StoreEntitySet="WarmReshapeParams">
+                <ScalarProperty Name="BandSerial" ColumnName="BandSerial" />
+                <ScalarProperty Name="ProcessedOn" ColumnName="ProcessedOn" />
+                <ScalarProperty Name="LoadStartTime" ColumnName="LoadStartTime" />
+                <ScalarProperty Name="PressStartTime" ColumnName="PressStartTime" />
+                <ScalarProperty Name="UnLoadStopTime" ColumnName="UnLoadStopTime" />
+                <ScalarProperty Name="PressStopTime" ColumnName="PressStopTime" />
+                <ScalarProperty Name="TopFixtureTemp" ColumnName="TopFixtureTemp" />
+                <ScalarProperty Name="BottomFixtureTemp" ColumnName="BottomFixtureTemp" />
+                <ScalarProperty Name="TossingItem" ColumnName="TossingItem" />
+                <ScalarProperty Name="ZHeightCheck" ColumnName="ZHeightCheck" />
+                <ScalarProperty Name="WarmPressCheck" ColumnName="WarmPressCheck" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
